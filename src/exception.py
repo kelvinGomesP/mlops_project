@@ -1,7 +1,7 @@
 # exception.py
 import sys
 import logging
-from logger import logging  # Importa o logger configurado no arquivo logger.py
+from src.logger import logging #Importa o logger configurado no arquivo logger.py
 
 def error_message_detail(error, error_detail: sys):
     _, _, exc_tb = error_detail.exc_info()
