@@ -23,9 +23,9 @@ class DataTransformation:
 
     def get_transformer_object(self):
         try:
-            # Colunas numéricas corrigidas
+            
             numerical_columns = ["writing score", "reading score"]
-            # Colunas categóricas corrigidas
+            
             categorical_columns = [
                 "gender",
                 "race/ethnicity",
@@ -75,7 +75,6 @@ class DataTransformation:
 
             preprocessing_obj = self.get_transformer_object()
 
-            # Nome da coluna corrigido para 'math score'
             target_column_name = "math score"
             numerical_columns = ["writing score", "reading score"]
 
@@ -86,7 +85,7 @@ class DataTransformation:
             target_feature_test_df = test_df[target_column_name]
 
             logging.info("Aplicando o objeto de pré-processamento aos datasets de treino e teste")
-
+            # ------------------------------------------------------------------------------------------------
             input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
@@ -112,3 +111,4 @@ class DataTransformation:
 
         except Exception as e:
             raise CustomException(e, sys)
+  

@@ -8,6 +8,8 @@ df = pd.read_csv(r'notebook\data\StudentsPerformance.csv')
 print(df)
 
 # CATEGORIAS UNICAS
+
+
 '''
 print("categorias em 'gender'", end=" ")
 print(df['gender'].unique())

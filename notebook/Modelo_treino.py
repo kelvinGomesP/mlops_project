@@ -111,3 +111,5 @@ print("Acurácia do modelo: %.2f%%" % score)
 # Criar DataFrame de previsões
 pred_df = pd.DataFrame({'Valor Atual': y_test, 'Valor da Previsão': y_pred, 'Diferença': y_test - y_pred})
 print(pred_df.head())
+
+
