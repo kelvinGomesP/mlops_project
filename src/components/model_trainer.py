@@ -73,14 +73,14 @@ class ModelTrainer:
             for model_name, model in models.items():
                 logging.info(f"Treinando e avaliando o modelo: {model_name}")
                 
-                # Treinar o modelo
+               
                 model.fit(X_train, y_train)
                 
-                # Predição
+                
                 y_train_pred = model.predict(X_train)
                 y_test_pred = model.predict(X_test)
                 
-                # Cálculo do R2 Score
+               
                 train_model_score = r2_score(y_train, y_train_pred)
                 test_model_score = r2_score(y_test, y_test_pred)
 

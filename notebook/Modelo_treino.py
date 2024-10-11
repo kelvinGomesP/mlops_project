@@ -15,19 +15,19 @@ from xgboost import XGBRegressor
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 
-# Carregar dados
+
 df = pd.read_csv(r'notebook\data\StudentsPerformance.csv')
 print(df.head())
 
-# Definir variáveis independentes (X) e dependentes (y)
+
 X = df.drop(columns=['math score'], axis=1)
 y = df['math score']
 
-# Identificar variáveis numéricas e categóricas
+
 num_features = X.select_dtypes(exclude="object").columns
 cat_features = X.select_dtypes(include="object").columns
 
-# Preprocessamento
+
 numeric_transformer = StandardScaler()
 oh_transformer = OneHotEncoder()
 
@@ -38,16 +38,15 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-# Aplicar transformações
+
 X = preprocessor.fit_transform(X)
 
-# Dividir dados em treino e teste
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Verificar as formas dos dados
 print(X_train.shape, X_test.shape)
 
-# Função para avaliar o modelo
+
 def evaluate_model(true, predicted):
     mae = mean_absolute_error(true, predicted)
     mse = mean_squared_error(true, predicted)
@@ -56,7 +55,7 @@ def evaluate_model(true, predicted):
 
     return mae, rmse, r2_square
 
-# Dicionário de modelos
+
 models = {
     "Linear Regression": LinearRegression(),
     "Lasso": Lasso(),
@@ -97,18 +96,18 @@ for model_name, model in models.items():
 
     print('=' * 35)
 
-# Criar um DataFrame para armazenar os resultados
+
 results_df = pd.DataFrame(list(zip(model_list, r2_list)), columns=['Model Name', 'R2_Score']).sort_values(by=["R2_Score"], ascending=False)
 print(results_df)
 
-# Ajustar modelo de regressão linear e exibir resultados
+
 lin_model = LinearRegression(fit_intercept=True)
 lin_model.fit(X_train, y_train)
 y_pred = lin_model.predict(X_test)
 score = r2_score(y_test, y_pred) * 100
 print("Acurácia do modelo: %.2f%%" % score)
 
-# Criar DataFrame de previsões
+
 pred_df = pd.DataFrame({'Valor Atual': y_test, 'Valor da Previsão': y_pred, 'Diferença': y_test - y_pred})
 print(pred_df.head())
 
